@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Code Editor</title>
+    <!-- Browser Icon -->
+     <link rel="shortcut icon" href="images/browser icon.png" type="image/x-icon">
+     <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontawesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <h3>Live Code Editor</h3>
+    <div class="container">
+        <div class="left">
+            <label><i class="fa-brands fa-html5" style="color: #f55905;"></i>HTML</label>
+            <textarea id="html-code" onkeyup="run()"></textarea>
+            <label><i class="fa-brands fa-css3-alt" style="color: #0e94fb;"></i>CSS</label>
+            <textarea id="css-code" onkeyup="run()" resize="none"></textarea>
+            <label><i class="fa-brands fa-js" style="color: #FFD43B;"></i>JavaScript</label>
+            <textarea id="js-code" spellcheck="false" onkeyup="run()"></textarea>
+        </div>
+        <div class="right">
+            <label><i class="fa-solid fa-caret-down"></i>Output</label>
+            <iframe id="output"></iframe>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        function run() {
+            // Targeting an element
+            let htmlCode = document.getElementById("html-code").value;
+            let cssCode = document.getElementById("css-code").value;
+            let jsCode = document.getElementById("js-code").value;
+            let output = document.getElementById("output");
+
+            // Executing HTML, CSS & JS code
+            output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
+            output.contentWindow.eval(jsCode);
+        }
+
+    </script>
+</body>
+
+</html>
